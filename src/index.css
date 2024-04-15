@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*::selection{
+    text-shadow: none;
+    background-color: #f9f9f9;
+    color: #000;
+}
+
+html{
+    scroll-snap-type: y mandatory;
+}
+
+body{
+    background-color: #001220;
+}
+
+*{
+    scroll-behavior: smooth!important;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+}
