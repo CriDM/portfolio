@@ -10,9 +10,10 @@ import {
 } from "framer-motion";
 import { useRef } from "react";
 import Social from "./component/social/Social";
-import AA from "./page/aa/AA";
 import About from "./page/about/About";
 import Home from "./page/home/Home";
+import Project from "./page/project/Project";
+import ProjectTitle from "./page/project/ProjectTitle";
 
 export default function App() {
   const imagesRef = useRef(null);
@@ -20,7 +21,7 @@ export default function App() {
     target: imagesRef,
     offset: ["start start", "end end"],
   });
-  const page = [Home, About, AA];
+  const page = [Home, About, ProjectTitle, Project];
   let pageNumber = page.length;
 
   const currentSlide = useTransform(scrollYProgress, [0, 1], [1, pageNumber]);
