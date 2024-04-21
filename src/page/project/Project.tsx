@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
 import ipp from "../../assets/ipp.png";
-import polecheck from "../../assets/polecheck.mov";
+import polecheck from "../../assets/polecheck.mp4";
 
 function Project({ num }: { num: number }) {
   const slideRef = useRef(null);
