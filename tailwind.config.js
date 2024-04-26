@@ -9,6 +9,9 @@ export default {
         tech: ["Share Tech Mono", "monospace"],
         montsettat: ["Montserrat", "sans-serif"],
       },
+      maxWidth: {
+        maxscreen: "100vw",
+      },
       colors: {
         "dark-blue": "#001220",
         "orange-home": "#FBAE3C",
@@ -34,6 +37,10 @@ export default {
         sm: "0 1px 2px var(--tw-shadow-color)",
         DEFAULT: "0 2px 4px var(--tw-shadow-color)",
         lg: "0 8px 16px var(--tw-shadow-color)",
+      },
+
+      spacing: {
+        "40vw": "40vw",
       },
     },
   },

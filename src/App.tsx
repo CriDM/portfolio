@@ -21,6 +21,7 @@ export default function App() {
     target: imagesRef,
     offset: ["start start", "end end"],
   });
+  // const page = [Home, About, ProjectTitle, Project];
   const page = [Home, About, ProjectTitle, Project];
   let pageNumber = page.length;
 
@@ -30,7 +31,7 @@ export default function App() {
     <LazyMotion features={domAnimation}>
       <section>
         {/* cagata al lato */}
-        <div className="flex flex-col fixed gap-2 right-2 top-1/2 z-max ">
+        <div className="flex flex-col fixed gap-2 right-2 md:top-1/2  top-1/3 z-max ">
           {page.map((_, index) => (
             <Dot key={index} dotNum={index + 1} currentSlide={currentSlide} />
           ))}
@@ -39,9 +40,9 @@ export default function App() {
         <Social />
 
         {/* pagine */}
-        <div ref={imagesRef} className="slides">
+        <div ref={imagesRef} className="slides ">
           {page.map((Component: any, index) => (
-            <div className="snap-start snap-always ">
+            <div className="snap-start snap-always max-w-maxscreen ">
               <Component key={index} num={index + 1} />
             </div>
           ))}

@@ -23,7 +23,7 @@ function ProjectTitle({ num }: { num: number }) {
           style={{ y, opacity }}
           className=" w-full h-full flex relative justify-center items-center z-40 font-bold"
         >
-          <h1 className="text-white  text-12xl relative font-tech  text-shadow-lg shadow-dark-blue mt-40">
+          <h1 className="text-white  md:text-12xl  text-center text-7xl relative font-tech  text-shadow-lg shadow-dark-blue mt-40">
             My Projects
           </h1>
         </m.div>

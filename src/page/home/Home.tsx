@@ -61,7 +61,7 @@ function Home({ num }: { num: number }) {
             ></img>
           </m.div>
 
-          <div className="absolute z-40 right-1/2 top-full -mt-20">
+          <div className="absolute z-40 md:right-1/2  right-40vw top-full -mt-20">
             <svg
               onClick={() => {
                 const element = document.getElementById("aboutSection");
@@ -83,14 +83,14 @@ function Home({ num }: { num: number }) {
               <path d="m19 12-7 7-7-7" />
             </svg>
           </div>
-          <div className="ml-12 h-5/6 lg:w-3/6">
+          <div className="md:ml-12 h-5/6 lg:w-3/6">
             <div className="w-auto flex flex-col justify-top">
               <h1 className=" mt-10 text-4xl text-center font-tech text-white  text-shadow  shadow-dark-blue selection:text-dark-blue selection:bg-white">
                 Hi! I'm Cristian Della Monica
               </h1>
             </div>
-            <div className=" mt-24 w-full flex flex-col justify-top ">
-              <h1 className=" select-none text-7xl text-center font-tech bg-gradient-to-l from-pink-600 via-red-600 to-orange-home inline-block text-transparent bg-clip-text ">
+            <div className=" mt-24 w-full flex flex-col justify-top max-w-screen-md md:max-w-full">
+              <h1 className=" select-none md:text-7xl text-5xl text-center font-tech bg-gradient-to-l from-pink-600 via-red-600 to-orange-home inline-block text-transparent bg-clip-text ">
                 I'm <span ref={typed} />
               </h1>
             </div>
