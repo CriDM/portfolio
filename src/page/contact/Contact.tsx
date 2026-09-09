@@ -17,7 +17,7 @@ export const Contact: React.FC<ContactProps> = ({ currentLang, onCopyEmail }) =>
   };
 
   return (
-    <footer id="contact" className="relative pt-24 pb-12 px-4 md:px-8 border-t border-white/5">
+    <footer id="contact" className="relative pt-24 pb-12 px-4 md:px-8 border-t border-white/5 overflow-hidden">
       {/* Ambient glow */}
       <div className="ambient-glow-2" />
 

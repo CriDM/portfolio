@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Language, PORTFOLIO_DATA } from "../data/portfolioData";
-import { Menu, X, Globe, Terminal } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 
 interface NavbarProps {
@@ -54,12 +54,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onToggleLang }) => 
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 md:py-6 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 w-full z-50 flex justify-center px-3 py-3 sm:px-4 sm:py-4 md:py-6 transition-all duration-300">
       <nav
-        className={`w-full max-w-6xl flex items-center justify-between px-5 py-3 rounded-2xl border transition-all duration-300 ${
+        className={`w-full max-w-6xl flex items-center justify-between px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-2xl border transition-all duration-300 ${
           isScrolled
-            ? "bg-slate-950/80 backdrop-blur-xl border-white/10 shadow-2xl shadow-indigo-950/20"
-            : "bg-slate-900/40 backdrop-blur-md border-white/5"
+            ? "bg-slate-950/85 backdrop-blur-xl border-white/10 shadow-2xl shadow-indigo-950/20"
+            : "bg-slate-900/50 backdrop-blur-md border-white/5"
         }`}
       >
         {/* Brand / Logo */}
@@ -69,17 +69,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onToggleLang }) => 
             e.preventDefault();
             scrollTo("home");
           }}
-          className="flex items-center gap-2 group cursor-pointer"
+          className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer min-w-0 shrink"
         >
-          <div className="w-8 h-8 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center font-mono font-bold text-xs shadow-sm group-hover:border-indigo-500/40 group-hover:scale-105 transition-all">
+          <div className="w-8 h-8 rounded-xl bg-slate-900/90 border border-white/10 flex items-center justify-center font-mono font-bold text-xs shadow-sm group-hover:border-indigo-500/40 group-hover:scale-105 transition-all shrink-0">
             <span className="text-slate-100 font-bold text-sm">&gt;</span>
             <span className="text-indigo-400 font-bold text-sm">_</span>
           </div>
-          <div className="flex flex-col">
-            <span className="font-sans font-bold tracking-tight text-white group-hover:text-indigo-300 transition-colors">
+          <div className="flex flex-col min-w-0">
+            <span className="font-sans font-bold tracking-tight text-white group-hover:text-indigo-300 transition-colors text-sm sm:text-base truncate">
               Cristian Della Monica
             </span>
-            <span className="text-[11px] font-mono text-slate-400">@CriDM</span>
+            <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 truncate">@CriDM</span>
           </div>
         </a>
 
@@ -153,11 +153,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onToggleLang }) => 
         </div>
 
         {/* Mobile controls */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex md:hidden items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Mobile Lang Button */}
           <button
             onClick={() => onToggleLang(currentLang === "it" ? "en" : "it")}
-            className="px-2.5 py-1 rounded-lg text-xs font-mono font-semibold bg-white/10 text-white border border-white/10 flex items-center gap-1"
+            className="px-2 py-1 rounded-lg text-xs font-mono font-semibold bg-white/10 text-white border border-white/10 flex items-center gap-1 shrink-0"
           >
             <Globe className="w-3.5 h-3.5 text-indigo-400" />
             {currentLang.toUpperCase()}
@@ -166,17 +166,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onToggleLang }) => 
           {/* Hamburger button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10"
+            className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 shrink-0"
             aria-label="Toggle Navigation Menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
           </button>
         </div>
       </nav>
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed top-20 left-4 right-4 bg-slate-950/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-5 shadow-2xl z-50 flex flex-col gap-3 animate-fade-in">
+        <div className="md:hidden fixed top-16 sm:top-20 left-3 right-3 sm:left-4 sm:right-4 bg-slate-950/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 sm:p-5 shadow-2xl z-50 flex flex-col gap-2.5 animate-fade-in">
           {navLinks.map((link) => (
             <button
               key={link.id}

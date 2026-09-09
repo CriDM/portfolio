@@ -41,7 +41,7 @@ export const Project: React.FC<ProjectProps> = ({ currentLang }) => {
   };
 
   return (
-    <section id="projects" className="relative py-24 px-4 md:px-8 max-w-6xl mx-auto">
+    <section id="projects" className="relative py-24 px-4 md:px-8 max-w-6xl mx-auto overflow-hidden">
       {/* Ambient background glow */}
       <div className="ambient-glow-1" />
 

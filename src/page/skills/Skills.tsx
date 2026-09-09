@@ -62,7 +62,7 @@ export const Skills: React.FC<SkillsProps> = ({ currentLang }) => {
   ];
 
   return (
-    <section id="skills" className="relative py-24 px-4 md:px-8 max-w-6xl mx-auto">
+    <section id="skills" className="relative py-24 px-4 md:px-8 max-w-6xl mx-auto overflow-hidden">
       {/* Ambient background glow */}
       <div className="ambient-glow-3" />
 

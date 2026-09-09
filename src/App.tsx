@@ -31,7 +31,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#070a12] text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-white">
+    <div className="relative min-h-screen w-full max-w-full overflow-x-hidden bg-[#070a12] text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-white">
       {/* Floating Modern Navbar */}
       <Navbar currentLang={currentLang} onToggleLang={handleToggleLang} />
 
