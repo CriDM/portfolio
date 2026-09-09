@@ -1,97 +1,51 @@
-import {
-  LazyMotion,
-  MotionValue,
-  domAnimation,
-  m,
-  useMotionValue,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import { useRef } from "react";
-import Social from "./component/social/Social";
-import About from "./page/about/About";
+import React, { useState } from "react";
+import { Language, PORTFOLIO_DATA } from "./data/portfolioData";
+import { Navbar } from "./component/Navbar";
+import { Toast } from "./component/Toast";
 import Home from "./page/home/Home";
+import About from "./page/about/About";
+import Skills from "./page/skills/Skills";
 import Project from "./page/project/Project";
-import ProjectTitle from "./page/project/ProjectTitle";
+import Contact from "./page/contact/Contact";
 
 export default function App() {
-  const imagesRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: imagesRef,
-    offset: ["start start", "end end"],
-  });
-  // const page = [Home, About, ProjectTitle, Project];
-  const page = [Home, About, ProjectTitle, Project];
-  let pageNumber = page.length;
-
-  const currentSlide = useTransform(scrollYProgress, [0, 1], [1, pageNumber]);
-
-  return (
-    <LazyMotion features={domAnimation}>
-      <section>
-        {/* cagata al lato */}
-        <div className="flex flex-col fixed gap-2 right-2 md:top-1/2  top-1/3 z-max ">
-          {page.map((_, index) => (
-            <Dot key={index} dotNum={index + 1} currentSlide={currentSlide} />
-          ))}
-        </div>
-
-        <Social />
-
-        {/* pagine */}
-        <div ref={imagesRef} className="slides ">
-          {page.map((Component: any, index) => (
-            <div className="snap-start snap-always max-w-maxscreen ">
-              <Component key={index} num={index + 1} />
-            </div>
-          ))}
-        </div>
-      </section>
-    </LazyMotion>
-  );
-}
-
-function Dot({
-  dotNum,
-  currentSlide,
-}: {
-  dotNum: number;
-  currentSlide: MotionValue<number>;
-}) {
-  const multiplier = useMotionValue(dotNum === 1 ? 1 : 0);
-  const opacity = useTransform(multiplier, [0, 1], [0.3, 1]);
-  const height = useTransform(multiplier, [0, 1], [20, 60]);
-
-  useMotionValueEvent(currentSlide, "change", (latest) => {
-    const whole = Math.floor(latest);
-    const remainder = latest % 1;
-
-    // Current dot
-    if (whole === dotNum) return multiplier.set(1 - remainder);
-
-    // Next dot
-    if (whole === dotNum - 1) return multiplier.set(remainder);
-
-    multiplier.set(0);
+  const [currentLang, setCurrentLang] = useState<Language>(() => {
+    const saved = localStorage.getItem("cdm_portfolio_lang");
+    return saved === "en" || saved === "it" ? saved : "it";
   });
 
-  const styles = {
-    opacity,
-    height,
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const handleToggleLang = (lang: Language) => {
+    setCurrentLang(lang);
+    localStorage.setItem("cdm_portfolio_lang", lang);
+  };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(PORTFOLIO_DATA.personal.email);
+    const msg = PORTFOLIO_DATA.contact.copiedNotification[currentLang];
+    setToastMessage(msg);
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 2800);
   };
 
   return (
-    <m.button
-      style={styles}
-      className=" w-2.5 h-5 bg-white  rounded-full opacity-30 border-none cursor-pointer"
-      onClick={() => {
-        document?.querySelector(`[data-slide="${dotNum}"]`)?.scrollIntoView();
-      }}
-    />
-  );
-}
+    <div className="relative min-h-screen bg-[#070a12] text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-white">
+      {/* Floating Modern Navbar */}
+      <Navbar currentLang={currentLang} onToggleLang={handleToggleLang} />
 
-export function useParallax(value: MotionValue<number>, distance: number) {
-  return useTransform(value, [0, 1], [-distance, distance]);
+      {/* Main Page Flow */}
+      <main className="flex flex-col">
+        <Home currentLang={currentLang} onCopyEmail={handleCopyEmail} />
+        <About currentLang={currentLang} />
+        <Skills currentLang={currentLang} />
+        <Project currentLang={currentLang} />
+        <Contact currentLang={currentLang} onCopyEmail={handleCopyEmail} />
+      </main>
+
+      {/* Feedback Toast */}
+      <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
+    </div>
+  );
 }
